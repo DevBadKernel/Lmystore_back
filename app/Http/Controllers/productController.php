@@ -90,7 +90,7 @@ class productController extends Controller
     public function destroy($id)
     {
         //
-        Log::channel('stedrr')->info("deleted product:",['id'=>$id]);
+        Log::channel('stderr')->info("deleted product:",['id'=>$id]);
         $deleted = Product::where('id',$id)->delete();
 
         if($deleted){
