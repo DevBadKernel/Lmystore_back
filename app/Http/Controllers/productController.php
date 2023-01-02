@@ -67,6 +67,7 @@ class productController extends Controller
     public function edit($id)
     {
         //
+        
     }
 
     /**
@@ -79,6 +80,14 @@ class productController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Log::channel('stderr')->info("updated product:",['id'=>$id]);
+        Log::channel('stderr')->info("product content:",json_decode($request->getContent(),true));
+        $productUpdated = json_decode($request->getContent(),true);
+        $updated = Product::where('id',$id)->update($productUpdated);
+
+        if($updated){
+            return response()->json(['info'=>true],200);
+        }
     }
 
     /**
